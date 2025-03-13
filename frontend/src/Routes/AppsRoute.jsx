@@ -63,6 +63,7 @@ export const AppsRoute = ({ children, componentType }) => {
           { replace: true, state: location?.state }
         );
       }
+      console.log(1003, 'Validate session, get extra props', restDetails);
       setExtraProps(restDetails);
       setLoading(false);
     }

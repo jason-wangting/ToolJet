@@ -110,6 +110,7 @@ class AppComponent extends React.Component {
   };
 
   render() {
+    console.log(1002, 'Root Component Render');
     const { updateAvailable, darkMode, isEditorOrViewer } = this.state;
     let toastOptions = {
       style: {

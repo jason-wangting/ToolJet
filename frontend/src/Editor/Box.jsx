@@ -7,7 +7,7 @@ import { shouldUpdate } from './ControlledComponentToRender';
 
 export const Box = React.memo((props) => {
   const { id, component, mode, customResolvables } = props;
-
+  console.log(1016, 'Box', { name: component.name, component, props });
   return (
     <HydrateWithResolveReferences id={id} mode={mode} component={component} customResolvables={customResolvables}>
       <BoxUI {...props} />

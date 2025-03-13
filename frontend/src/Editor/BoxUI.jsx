@@ -22,7 +22,7 @@ const shouldAddBoxShadowAndVisibility = [
 
 const BoxUI = (props) => {
   const { t } = useTranslation();
-
+  console.log(1018, 'BoxUI', { name: props.component.name, props });
   const {
     inCanvas,
     component,

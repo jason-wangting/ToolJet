@@ -53,7 +53,7 @@ const ComponentWrapper = React.memo(({ componentName, ...props }) => {
   if (componentName === 'Form') {
     return <ComponentToRender key={key} resetComponent={resetComponent} {...props} />;
   }
-
+  console.log(1019, 'ComponentWrapper', { name: componentName, props });
   return <ComponentToRender {...props} />;
 }, shouldUpdate);
 

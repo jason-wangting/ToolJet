@@ -821,7 +821,7 @@ export const Container = ({
     : 'Connect to a data source to be able to create a query';
 
   const showEmptyContainer = !appLoading && !isDragging && mode !== 'view';
-
+  console.log(1014, { boxes: boxes });
   return (
     <ContainerWrapper
       showComments={showComments}
@@ -868,7 +868,7 @@ export const Container = ({
             .map(([id, box]) => {
               const canShowInCurrentLayout =
                 box.component.definition.others[currentLayout === 'mobile' ? 'showOnMobile' : 'showOnDesktop'].value;
-
+              console.log(1015, 'rendering box', { id, box, canShowInCurrentLayout });
               if (box.parent || !resolveWidgetFieldValue(canShowInCurrentLayout)) {
                 return '';
               }

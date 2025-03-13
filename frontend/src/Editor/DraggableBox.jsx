@@ -59,6 +59,7 @@ const DraggableBox = React.memo(
     isFromSubContainer = false,
     childComponents = null,
   }) => {
+    console.log(1017, 'DraggableBox', component.name);
     const isResizing = useGridStore((state) => state.resizingComponentId === id);
     const [canDrag, setCanDrag] = useState(true);
     const noOfGrid = useNoOfGrid();
@@ -154,7 +155,6 @@ const DraggableBox = React.memo(
      * Only purpose of the hook is to force one rerender the component
      * */
     useEditorStore((state) => state.componentsNeedsUpdateOnNextRender.find((compId) => compId === id));
-
     return (
       <div
         className={

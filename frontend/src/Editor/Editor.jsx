@@ -91,6 +91,7 @@ setAutoFreeze(false);
 enablePatches();
 
 const EditorComponent = (props) => {
+  console.log(1005, 'main editor', props);
   const { socket } = createWebsocketConnection(props?.params?.id);
   const mounted = useMounted();
 
@@ -154,7 +155,7 @@ const EditorComponent = (props) => {
     }),
     shallow
   );
-
+  console.log(1006, `defaultComponentStateComputed`, defaultComponentStateComputed);
   const dataQueries = useDataQueriesStore((state) => state.dataQueries, shallow);
   const {
     isMaintenanceOn,
@@ -282,7 +283,8 @@ const EditorComponent = (props) => {
 
     if (mounted && didAppDefinitionChanged && currentPageId) {
       const components = appDefinition?.pages[currentPageId]?.components || {};
-
+      console.log(1007, '开始计算组件状态');
+      console.log(1009, '初始化的 components', components);
       computeComponentState(components);
 
       if (appDiffOptions?.skipAutoSave === true || appDiffOptions?.entityReferenceUpdated === true) return;
@@ -298,6 +300,7 @@ const EditorComponent = (props) => {
       const isResolverStoreReady = useResolveStore.getState().storeReady;
       if (isEditorReady && isResolverStoreReady) {
         const components = appDefinition?.pages?.[currentPageId]?.components || {};
+        console.log(1008, '开始计算组件状态');
         computeComponentState(components);
       }
 
@@ -481,6 +484,7 @@ const EditorComponent = (props) => {
   };
 
   const $componentDidMount = async () => {
+    console.log(1010, 'runForInitialLoad');
     window.addEventListener('message', handleMessage);
 
     props.setEditorOrViewer('editor');
@@ -703,6 +707,7 @@ const EditorComponent = (props) => {
       user_id: userId,
       events,
     } = appData;
+    console.log(1011, 'fetch app data');
 
     const startingPageHandle = props.params.pageHandle;
     fetchAndSetWindowTitle({ page: pageTitles.EDITOR, appName });
@@ -746,6 +751,7 @@ const EditorComponent = (props) => {
     const appDefData = buildAppDefinition(data);
 
     const appJson = appDefData;
+    console.log(1012, 'dataschema to app instance', data, appJson);
     const pages = data.pages;
 
     const startingPageId = pages.filter((page) => page.handle === startingPageHandle)[0]?.id;

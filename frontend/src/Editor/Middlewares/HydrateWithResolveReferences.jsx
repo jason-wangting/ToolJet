@@ -18,6 +18,7 @@ const getComponentMetaData = memoizeFunction((componentType) => {
 });
 
 const HydrateWithResolveReferences = ({ id, mode, component, customResolvables, children }) => {
+  console.log(1021, 'HydrateWithResolveReferences', { name: component.name, component, mode, customResolvables });
   const componentMeta = useMemo(() => getComponentMetaData(component?.component), []);
 
   const resolvedProperties = resolveProperties(component, {}, null, customResolvables, id);

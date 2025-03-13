@@ -215,7 +215,7 @@ export function onComponentOptionChanged(component, option_name, value, id) {
       const lookUpTable = useResolveStore.getState().lookupTable;
 
       const existingRef = lookUpTable.resolvedRefs?.get(lookUpTable.hints?.get(path));
-
+      console.log(1020, { path, existingRef });
       if (typeof existingRef === 'function') return;
 
       const shouldUpdateRef = existingRef !== componentData[option_name];
@@ -1441,6 +1441,14 @@ export function computeComponentState(components = {}) {
           ...existingValues,
         };
       }
+      console.log(1013, 'compute component state', {
+        name: component.name,
+        existingValues,
+        exposedVariables: componentMeta.exposedVariables,
+        componentState: componentState[component.name],
+        component: component,
+        definition: component['definition']['properties'],
+      });
     });
 
     useCurrentStateStore.getState().actions.setCurrentState({

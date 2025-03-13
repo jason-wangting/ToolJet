@@ -15,12 +15,13 @@ const AppWithProfiler = Sentry.withProfiler(App);
 appService
   .getConfig()
   .then((config) => {
+    console.log(1001, 'appService 启动入口, 从后端获取到基本的配置信息', config);
     window.public_config = config;
     const language = config.LANGUAGE || 'en';
     const path = config?.SUB_PATH || '/';
     i18n
-      .use(Backend)
-      .use(initReactI18next)
+      .use(Backend) // 使用 i18next-http-backend 加载翻译文件
+      .use(initReactI18next) // 使用 react-i18next 绑定 React
       .init({
         load: 'languageOnly',
         fallbackLng: 'en',
